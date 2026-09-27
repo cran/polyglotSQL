@@ -405,7 +405,7 @@ named) column vectors:</p>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="fu">sql_validate</span>(<span class="st">&quot;SELECT o_missing FROM orders&quot;</span>, <span class="at">schema =</span> schema)</span>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; &lt;polyglot_validation&gt; invalid (generic)</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; [E201] Unknown column &#39;o_missing&#39; in table &#39;orders&#39;</span></span></code></pre></div>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; [E201] Unknown column &#39;o_missing&#39; in table &#39;orders&#39; at 1:17</span></span></code></pre></div>
 <p>Use <code>error = TRUE</code> to turn an invalid result into a
 <code>polyglot_validation_error</code> condition — convenient in
 pipelines.</p>
