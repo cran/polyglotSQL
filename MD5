@@ -1,7 +1,7 @@
-6c4b8ec8a1714e3c03a65e56ffdfb49f *DESCRIPTION
+2443f06304a35f8e43f0e319a66eaa9c *DESCRIPTION
 8d53a0830e410867ce96ffb7280f5904 *LICENSE
 ffd5070dfcd6e976407d6caab7b7fc28 *NAMESPACE
-17c702621c0122d2eb502271cd7f8274 *NEWS.md
+5d0507741ad1baab2632087db8b70328 *NEWS.md
 6a5ffaa0889ddad522cce3cd2ac11162 *R/analysis.R
 4fabfac606f2beec5e542ea5f7682534 *R/extendr-wrappers.R
 3ccb4f24055fb2f36fb445006575615d *R/ffi.R
@@ -11,7 +11,7 @@ b6ffaf3adb472b95d0d512dfa9ba28a4 *R/polyglotSQL-package.R
 40f6d3d462df950b314ac4ae61df6056 *R/print.R
 f8b612623da29001cabfd2ccfcff81bc *R/schema.R
 73fdde9b42a842cebedbc43bf072ddee *R/transpile.R
-d5420c6d4dd7eae3b279125768bc9456 *README.md
+29c5b338d1ff38750a07aa165cb31ddc *README.md
 817cd8483fc94ef28a7e42e4f4511325 *build/vignette.rds
 6071edd604dbeb75308cfbedc7790398 *cleanup
 73a77ffc1defd1d4c9a650cf2bbbf606 *cleanup.win
@@ -25,7 +25,7 @@ cb610d41cfad08d4e102bc1a3fe87a57 *configure
 2864233b503638a189ea3d14c14d20d2 *inst/doc/dialect-migration.html
 e0e3ccb3fd8be0a363d30832caeff676 *inst/doc/getting-started.R
 5c715ef2d2bfbb83ebc684a61f32b523 *inst/doc/getting-started.Rmd
-9ea32863bf997cddb5b28260dc6f104b *inst/doc/getting-started.html
+872c251edb0e925b9f4b7593a70bac03 *inst/doc/getting-started.html
 409cea12151613f015a0e05ed6b8faeb *inst/doc/installation-and-troubleshooting.R
 ede9a0efa7574bbe8826419cccda049b *inst/doc/installation-and-troubleshooting.Rmd
 62b37d8fd83075dfc1c6ced856e51fe1 *inst/doc/installation-and-troubleshooting.html
@@ -35,7 +35,7 @@ ede9a0efa7574bbe8826419cccda049b *inst/doc/installation-and-troubleshooting.Rmd
 20bd8925f90741d3b83b898f9639ab4e *man/as_polyglot_schema.Rd
 300a69ed963a00cc47a37c8d3c2c0174 *man/figures/logo.png
 5af8e0355ea9ef3892f629133dfb1e2a *man/figures/logo.svg
-8348dad5c2c86245eed0b1329f7ee12a *man/polyglotSQL-package.Rd
+237db1b35416fbbe41539092c0413bc0 *man/polyglotSQL-package.Rd
 6ccb0003d67778739b753852ee40835f *man/polyglot_version.Rd
 5e2377b0eff4040b1f028d2ea46d75cc *man/sql_analyze.Rd
 9e6dc994f6df04a3e384b829989a3b65 *man/sql_annotate_types.Rd
@@ -51,12 +51,12 @@ f090ad7301513c2b051b5dbc96d84e30 *man/sql_lineage.Rd
 1091cf64560c0581bd55afb7023899a6 *man/sql_tokenize.Rd
 02fa9db5d0ef68a37c6572af645c1366 *man/sql_transpile.Rd
 11e97433a0ff7103af88836f8bacf9eb *man/sql_validate.Rd
-1bc92d5abf1977014e821e9df96bb66a *src/Makevars.in
+4607f49e1d3e329d8feead80082b93d7 *src/Makevars.in
 395b705adbb1f2d3d23afe483b91de3f *src/Makevars.win.in
-993b6917f7fdb7bb498ca19902bec507 *src/entrypoint.c
+53cb1a8165be28158ae187f6a92892ab *src/entrypoint.c
 4c1b4ce270d8edfa20300e4654c88419 *src/polyglotSQL-win.def
 4a22665cf802e08d17725039386628ad *src/rust/Cargo.lock
-02971ae0899885131fd1a33c1d418891 *src/rust/Cargo.toml
+01a6bc06c0b516837b152496d82328b0 *src/rust/Cargo.toml
 72c2ec265bc4e43ce80708b307c3f41a *src/rust/build.rs
 0b0530c5708ea3d0e7762ffd5103d226 *src/rust/document.rs
 8be6b61117499ca737418745998450eb *src/rust/src/lib.rs
@@ -65,6 +65,7 @@ bacf6ebd9c71878324ea400b529548b6 *src/rust/vendor.tar.xz
 5a5bcd32c9a179d605452a229ba284fe *tests/testthat.R
 101009a5357eb6681b2d12da5e1d3d42 *tests/testthat/_snaps/extras.md
 8e67dc389d6d78bba071375e26eafde3 *tests/testthat/test-analyze.R
+86a72bbd26b15d6e14fd86bab4f179fb *tests/testthat/test-compiled-code.R
 10b8b288c10f9a6a077612c5afc812cf *tests/testthat/test-errors.R
 a8163c7ccae94ace5efbdf5ace615249 *tests/testthat/test-extras.R
 bd5599a9575382cc541f48bef35b1677 *tests/testthat/test-format.R
@@ -73,7 +74,7 @@ c3186894dce12d8ead298e59f1d534a6 *tests/testthat/test-lineage.R
 5af76bfdeb060e5795eabad1f67517c4 *tests/testthat/test-parse.R
 7287c8ca53a1d3147a426243727c5c70 *tests/testthat/test-transpile.R
 70b022599b6b1038f6b3c1c83d77538d *tests/testthat/test-validate.R
-6a8d7ca055bc5b4db8d20a2ef40bbec4 *tools/config.R
+15e0252e10f96db5bb201ad5ca950a92 *tools/config.R
 064e5e4e065fe2601c288550d112309d *tools/msrv.R
 9c470cabf5089a0206fc6c5f34e1d6f0 *vignettes/dialect-migration.Rmd
 5c715ef2d2bfbb83ebc684a61f32b523 *vignettes/getting-started.Rmd
