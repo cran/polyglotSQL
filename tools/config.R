@@ -33,6 +33,30 @@ if (!is_not_cran) {
   ""
 )
 
+# CRAN's macOS x86_64 builders stop an installation after 30 minutes and are
+# too slow to compile the optimized `polyglot-sql` crate within that limit
+# (0.1.1 and 0.1.2 were interrupted there; the same build takes 12 minutes on
+# the arm64 builder). On that platform only, and only for a CRAN build, the
+# engine crate is compiled without optimization: about five times faster to
+# build, roughly 2-4 times slower at run time (still a few milliseconds per
+# call) and a larger shared object. A local install with NOT_CRAN set gets the
+# full build. Cargo's `--config` applies the override to that one crate.
+# `debug-assertions` is switched on with it because the crate sizes the stack
+# red zone of its recursive parser/generator by `cfg!(debug_assertions)`
+# (4 MB for unoptimized frames, 1 MB otherwise); overflow checks, which cargo
+# would enable along with it, stay off as in the optimized build.
+is_macos_x86_64 <- identical(Sys.info()[["sysname"]], "Darwin") &&
+  identical(R.version[["arch"]], "x86_64")
+if (!is_not_cran && vendor_exists && is_macos_x86_64) {
+  message("Building the polyglot-sql crate without optimization (macOS x86_64).")
+  .cran_flags <- paste(
+    .cran_flags,
+    "--config 'profile.release.package.polyglot-sql.opt-level=0'",
+    "--config 'profile.release.package.polyglot-sql.debug-assertions=true'",
+    "--config 'profile.release.package.polyglot-sql.overflow-checks=false'"
+  )
+}
+
 # when DEBUG env var is present we use `--debug` build
 .profile <- ifelse(is_debug, "", "--release")
 .clean_targets <- ifelse(is_debug, "", "$(TARGET_DIR)")

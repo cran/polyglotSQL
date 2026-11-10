@@ -392,6 +392,13 @@ policy).</li>
 installed package has no runtime dependency on cargo.</li>
 <li><code>DEBUG=true R CMD INSTALL .</code> produces a debug build
 (faster compile, slower runtime).</li>
+<li>On <strong>macOS x86_64 (Intel)</strong>, a CRAN build (the default
+when <code>NOT_CRAN</code> is unset, which is how the CRAN binaries are
+made) compiles the engine crate without optimization so that it fits the
+CRAN builders’ 30-minute limit. The engine is then 2-4 times slower,
+still a few milliseconds per call.
+<code>NOT_CRAN=true R CMD INSTALL .</code> gives the fully optimized
+build.</li>
 </ul>
 </div>
 <div id="troubleshooting" class="section level2">
@@ -423,7 +430,7 @@ update with <code>rustup update stable</code>.</p>
 <p>The upstream crate version is pinned in
 <code>src/rust/Cargo.toml</code> and <code>Cargo.lock</code>, and its
 sources are vendored. To upgrade:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">tools/update-vendor.sh</span> 0.12.0  <span class="co"># bumps polyglot-sql, re-vendors, re-packs</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">tools/update-vendor.sh</span> 0.14.1  <span class="co"># bumps polyglot-sql, re-vendors, re-packs</span></span></code></pre></div>
 <p>then update <code>Config/polyglotSQL/upstream</code> in
 <code>DESCRIPTION</code>, run the test suite, and check
 <code>polyglot_version()</code> reports the new version.</p>

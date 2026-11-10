@@ -1,3 +1,43 @@
+# polyglotSQL 0.1.3
+
+* Updated the embedded `polyglot-sql` engine from 0.12.0 to 0.14.1 (upstream
+  changelog: <https://github.com/tobilg/polyglot/blob/main/CHANGELOG.md>).
+  Highlights inherited by the R API: two new dialects, `"hana"` (SAP HANA,
+  aliases `"saphana"`/`"sap_hana"`) and `"vertica"`, bringing `sql_dialects()`
+  to 36 entries; set-operation output types (`UNION`/`INTERSECT`/`EXCEPT`,
+  including `BY NAME` and `CORRESPONDING`) are now resolved by `sql_analyze()`
+  and the type annotation; Oracle output renders `LIMIT` as
+  `OFFSET ... FETCH FIRST ... ROWS ONLY` and compound queries keep a trailing
+  `FETCH FIRST`; branch-local row limits inside set operations are
+  wrapped in parentheses instead of limiting the whole union; DuckDB `//` integer
+  division and `ORDER BY ALL` translate correctly; BigQuery named parameters,
+  decimal precision, interval arithmetic and `DATE(timestamp, time_zone)`
+  convert to DuckDB faithfully; Snowflake `PIVOT`/`UNPIVOT` over CTEs no longer
+  loops in lineage analysis; schema validation covers `VALUES` sources,
+  `LATERAL` and `INSERT ... SELECT`. From 0.13.3-0.14.1: star expansion
+  honors `EXCEPT`/`EXCLUDE`, `REPLACE` and `RENAME` in qualification,
+  `sql_analyze()`, `sql_lineage()` and `sql_openlineage()`, and lineage
+  resolves `PIVOT`/`UNPIVOT` columns and ClickHouse `ARRAY JOIN` aliases;
+  `QUALIFY` and `UNION BY NAME` emulation preserve output names and ordering;
+  `EXPLAIN` keeps its options and the underlying statement; new syntax
+  (ClickHouse pipe queries, Trino query-local SQL routines, DuckDB nearest
+  joins, Hive/Spark multiple inserts, Doris `MATCH` predicates); DuckDB to
+  BigQuery maps numbered parameters (`$1` becomes `@p1`) and `DATE_TRUNC`.
+* Behavior change inherited from the engine: transpilations that cannot
+  preserve the meaning of the source query (some JSON, numeric, temporal,
+  array, locking and time-travel constructs, or `DATE_TRUNC` on an operand of
+  unknown type) now raise a `polyglot_transpile_error` naming the construct,
+  where earlier versions could return SQL that ran but meant something else.
+  An explicit cast in the source usually resolves it.
+* On macOS x86_64 (Intel), the embedded engine crate is now compiled
+  without optimization whenever `NOT_CRAN` is unset, which is how the CRAN
+  binaries are built (`configure`/`tools/config.R`). The CRAN builders for
+  that platform stop an installation after 30 minutes and interrupted the
+  0.1.1 and 0.1.2 builds. The build is about five times faster; the engine
+  runs 2-4 times slower there, which is still a few milliseconds per call,
+  and the shared object is larger. `NOT_CRAN=true R CMD INSTALL .` gives the
+  fully optimized build. Other platforms are unchanged.
+
 # polyglotSQL 0.1.2
 
 * Lighter Rust release profile (`opt-level = "s"`, no LTO, 16 codegen units)
